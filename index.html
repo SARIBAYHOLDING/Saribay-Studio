@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sarıbay Studio – Dark Cinematic Indie Co-Op Games | Powered By Sarıbay Yazılım</title>
+  
+  <meta name="description" content="Sarıbay Studio, Selahattin Sarıbay liderliğinde kurulan bağımsız (indie) oyun stüdyosu. Tüm oyunlarımız üretim aşamasındadır (Coming Soon). Powered By Sarıbay Yazılım.">
+  <meta name="keywords" content="Sarıbay Studio, Selahattin Sarıbay, Sarıbay Yazılım, indie oyun stüdyosu, bağımsız oyunlar, co-op oyunlar, Unreal Engine 5, Mersin oyun yazılım">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sarıbay Studio – Dark Cinematic Indie Co-Op Games">
+  <meta property="og:description" content="Hikaye ve oyun mekaniklerini devasa co-op evrenlerinde birleştiren bağımsız (indie) oyun stüdyosu. Powered By Sarıbay Yazılım.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0A0A0A">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230A0A0A' stroke='%23C9A84C' stroke-width='6'/><text x='50' y='72' font-family='Cinzel, serif' font-size='60' font-weight='bold' fill='%23C9A84C' text-anchor='middle'>S</text></svg>">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- External Libraries (Three.js & Anime.js) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="loading">
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="loader-center">
+      <div class="loader-emblem">
+        <svg viewBox="0 0 100 100" class="emblem-svg">
+          <polygon points="50,5 95,27.5 95,72.5 50,95 5,27.5 5,27.5" fill="none" stroke="#C9A84C" stroke-width="2.5"/>
+          <text x="50" y="65" font-family="'Cinzel', serif" font-size="46" font-weight="900" fill="#C9A84C" text-anchor="middle">S</text>
+        </svg>
+      </div>
+      <h1 class="loader-brand">SARİBAY <span class="gold-text">STUDIO</span></h1>
+      <p class="loader-tagline">INDEPENDENT INDIE GAME STUDIO • IN ACTIVE PRODUCTION</p>
+      <div class="loader-progress-bar">
+        <div id="loader-fill" class="loader-fill"></div>
+      </div>
+      <div class="loader-meta">
+        <span id="loader-percent" class="loader-percent">0%</span>
+        <span class="loader-badge">POWERED BY SARİBAY YAZILIM</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div id="scroll-progress" class="scroll-progress"></div>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/905510311029?text=Merhaba%20Selahattin%20Bey,%20Sarıbay%20Studio%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" id="whatsapp-float-btn" class="whatsapp-float" title="Sarıbay Studio WhatsApp İletişim Hat (+90 551 031 1029)">
+    <svg viewBox="0 0 24 24" class="wa-icon" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    <span class="wa-text">WHATSAPP İLETİŞİM</span>
+  </a>
+
+  <!-- 3D WEBGL BACKGROUND CANVAS -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- NAVBAR -->
+  <header class="site-header">
+    <nav class="nav-container">
+      <div class="nav-brand-container">
+        <a href="#hero" class="brand-link">
+          <div class="brand-emblem">
+            <svg viewBox="0 0 100 100" class="brand-svg">
+              <polygon points="50,8 90,28 90,72 50,92 10,72 10,28" fill="none" stroke="#C9A84C" stroke-width="3.5"/>
+              <text x="50" y="65" font-family="'Cinzel', serif" font-size="46" font-weight="900" fill="#C9A84C" text-anchor="middle">S</text>
+            </svg>
+          </div>
+          <div class="brand-text-wrap">
+            <span class="brand-title">SARİBAY <span class="gold">STUDIO</span></span>
+          </div>
+        </a>
+        <a href="https://saribayholding.github.io/Saribay-Yazilim/" target="_blank" rel="noopener" class="powered-badge" title="Sarıbay Yazılım Resmi Sitesini Ziyaret Et">
+          POWERED BY SARİBAY YAZILIM ↗
+        </a>
+      </div>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-menu">
+        <li><a href="#hero" class="nav-link active"><span class="nav-num">01</span> HOME</a></li>
+        <li><a href="#vision" class="nav-link"><span class="nav-num">02</span> VISION</a></li>
+        <li><a href="#projects" class="nav-link"><span class="nav-num">03</span> PROJECTS <span class="badge-mini">COMING SOON</span></a></li>
+        <li><a href="#devlog" class="nav-link"><span class="nav-num">04</span> DEVLOG</a></li>
+        <li><a href="#careers" class="nav-link"><span class="nav-num">05</span> JOIN US</a></li>
+      </ul>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <button id="sound-toggle" class="btn-icon" aria-label="Toggle Sound" title="Atmospheric Sound FX">
+          <svg id="sound-on-icon" class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          <svg id="sound-off-icon" class="icon-svg hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+        <a href="https://wa.me/905510311029?text=Merhaba%20Selahattin%20Bey,%20Sarıbay%20Studio%20ile%20iletişime%20geçmek%20istiyorum." target="_blank" rel="noopener" class="btn-gold-sm wa-nav-link">
+          <span>İLETİŞİME GEÇ (WHATSAPP)</span>
+        </a>
+        <button id="mobile-menu-toggle" class="hamburger-btn" aria-label="Toggle Navigation Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay -->
+    <div id="mobile-drawer" class="mobile-drawer">
+      <div class="drawer-content">
+        <ul class="drawer-links">
+          <li><a href="#hero" class="drawer-link"><span class="gold">01.</span> HOME</a></li>
+          <li><a href="#vision" class="drawer-link"><span class="gold">02.</span> PHILOSOPHY & VISION</a></li>
+          <li><a href="#projects" class="drawer-link"><span class="gold">03.</span> UPCOMING PROJECTS</a></li>
+          <li><a href="#devlog" class="drawer-link"><span class="gold">04.</span> STUDIO DEVLOG</a></li>
+          <li><a href="#careers" class="drawer-link"><span class="gold">05.</span> CAREERS & JOIN US</a></li>
+        </ul>
+        <div class="drawer-footer">
+          <a href="https://wa.me/905510311029?text=Merhaba%20Selahattin%20Bey,%20Sarıbay%20Studio%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="drawer-powered">
+            💬 WHATSAPP DİREKT İLETİŞİM (+90 551 031 1029)
+          </a>
+          <p class="drawer-copy">Founded by Selahattin Sarıbay © 2026</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="hero-grid-overlay"></div>
+      <div class="hero-container">
+        
+        <div class="hero-top-tag animate-target">
+          <span class="tag-line"></span>
+          <span class="tag-text">SARİBAY STUDIO &bull; AN INDEPENDENT INDIE GAME STUDIO</span>
+        </div>
+
+        <h1 class="hero-headline animate-target">
+          WE MERGE <span class="gold-gradient">UNFILTERED STORY</span> WITH REBELLIOUS CO-OP GAMEPLAY.
+        </h1>
+
+        <div class="hero-typing-wrap animate-target">
+          <span class="typing-prefix">STUDIO STATUS:</span>
+          <span id="typing-text" class="typing-text"></span>
+          <span class="typing-cursor">|</span>
+        </div>
+
+        <p class="hero-description animate-target">
+          Sarıbay Studio, <strong>Selahattin Sarıbay</strong> liderliğinde kurulan bağımsız bir (indie) oyun stüdyosudur. <strong>Sarıbay Yazılım</strong> donanım ve mühendislik altyapısıyla güçlendirilen stüdyomuzda, co-op oyun deneyimini yeniden tanımlıyoruz.
+        </p>
+
+        <div class="hero-actions animate-target">
+          <a href="#projects" class="btn-hero-primary">
+            <span>GELİŞTİRİLEN PROJELER (COMING SOON)</span>
+            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="https://wa.me/905510311029?text=Merhaba%20Selahattin%20Bey,%20Sarıbay%20Studio%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn-hero-secondary">
+            <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M16 2A13 13 0 0 0 4.67 21.3L3 29l7.89-1.63A13 13 0 1 0 16 2z"/></svg>
+            <span>WHATSAPP İLE SORU SOR</span>
+          </a>
+        </div>
+
+        <div class="hero-metrics animate-target">
+          <div class="metric-card">
+            <span class="metric-number-text">INDIE STUDIO</span>
+            <span class="metric-label">BAĞIMSIZ YARATICI ÖZGÜRLÜK</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-card">
+            <span class="metric-number" data-target="4">0</span>
+            <span class="metric-label">PROJE ÜRETİMDE (COMING SOON)</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-card">
+            <span class="metric-number-text">UNREAL ENGINE 5</span>
+            <span class="metric-label">GELİŞTİRME ALTYAPISI</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- HERO BOTTOM DECORATION -->
+      <div class="hero-bottom-bar">
+        <div class="scroll-indicator">
+          <div class="mouse-icon"><div class="wheel"></div></div>
+          <span>AŞAĞI KAYDIRIN</span>
+        </div>
+        <div class="hero-signature-badge">
+          KURUCU & OYUN DİREKTÖRÜ: <strong>SELAHATTİN SARİBAY</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER MARQUEE BAND -->
+    <div class="ticker-band">
+      <div class="ticker-track">
+        <span>SARİBAY STUDIO</span><span class="dot">&bull;</span>
+        <span>INDEPENDENT INDIE GAME STUDIO</span><span class="dot">&bull;</span>
+        <span>POWERED BY SARİBAY YAZILIM</span><span class="dot">&bull;</span>
+        <span>KURUCU: SELAHATTİN SARİBAY</span><span class="dot">&bull;</span>
+        <span>TÜM PROJELER ÜRETİM AŞAMASINDADIR &bull; COMING SOON</span><span class="dot">&bull;</span>
+        <span>WHATSAPP İLETİŞİM: +90 551 031 1029</span><span class="dot">&bull;</span>
+        <span>SARİBAY STUDIO</span><span class="dot">&bull;</span>
+        <span>INDEPENDENT INDIE GAME STUDIO</span><span class="dot">&bull;</span>
+        <span>POWERED BY SARİBAY YAZILIM</span><span class="dot">&bull;</span>
+        <span>KURUCU: SELAHATTİN SARİBAY</span><span class="dot">&bull;</span>
+        <span>TÜM PROJELER ÜRETİM AŞAMASINDADIR &bull; COMING SOON</span><span class="dot">&bull;</span>
+        <span>WHATSAPP İLETİŞİM: +90 551 031 1029</span><span class="dot">&bull;</span>
+      </div>
+    </div>
+
+    <!-- VISION & PHILOSOPHY SECTION -->
+    <section id="vision" class="vision-section">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <span class="section-tag">[ 02 &bull; STUDIO MANIFESTO ]</span>
+          <h2 class="section-title">WHY CO-OP? WHY NOW?</h2>
+          <p class="section-subtitle">Sarıbay Studio Kurucu & Oyun Direktörü <strong>Selahattin Sarıbay</strong>'ın Vizyonu</p>
+        </div>
+
+        <div class="vision-grid">
+          <!-- Typographic Founder Manifesto Card -->
+          <div class="founder-card glass-panel reveal-left">
+            <div class="manifesto-header">
+              <div class="manifesto-logo">
+                <svg viewBox="0 0 100 100" class="manifesto-svg"><polygon points="50,8 90,28 90,72 50,92 10,72 10,28" fill="none" stroke="#C9A84C" stroke-width="4"/><text x="50" y="65" font-family="'Cinzel', serif" font-size="46" font-weight="900" fill="#C9A84C" text-anchor="middle">S</text></svg>
+              </div>
+              <div class="manifesto-titles">
+                <span class="badge-title">SELAHATTİN SARİBAY</span>
+                <span class="badge-sub">Kurucu & Oyun Direktörü</span>
+              </div>
+            </div>
+            <blockquote class="founder-quote">
+              "Biz Sarıbay Studio'yu sıradan, güvenli ve tekrarlayan oyunlar üretmek için kurmadık. Amacımız, bağımsız stüdyo özgürlüğümüzle iki oyuncunun aynı anda kalbinin hızlı çarpacağı sarsıcı co-op deneyimleri yaşatmak."
+            </blockquote>
+            <div class="founder-footer">
+              <a href="https://saribayholding.github.io/Saribay-Yazilim/" target="_blank" class="founder-ecosystem-link">
+                ⚡ SARİBAY YAZILIM TEKNOLOJİ SPONSORLUĞUYLA
+              </a>
+            </div>
+          </div>
+
+          <!-- Philosophy 3 Pillars -->
+          <div class="philosophy-pillars reveal-right">
+            
+            <div class="pillar-card glass-panel">
+              <div class="pillar-num">01</div>
+              <div class="pillar-content">
+                <h3>CO-OP NATIVE CREATION</h3>
+                <p>
+                  Oyunlarımız sonradan eklenmiş bir çok oyunculu moda sahip değildir. İlk satır koddan son sanat detayına kadar sadece iki kişinin birlikteliği üzerine inşa edilir.
+                </p>
+              </div>
+            </div>
+
+            <div class="pillar-card glass-panel">
+              <div class="pillar-num">02</div>
+              <div class="pillar-content">
+                <h3>UNREAL ENGINE 5 & SARİBAY YAZILIM</h3>
+                <p>
+                  Lumen, Nanite ve donanım altyapımız, Sarıbay Yazılım'ın güçlü mühendislik ve yazılım birikiminden beslenir.
+                </p>
+              </div>
+            </div>
+
+            <div class="pillar-card glass-panel">
+              <div class="pillar-num">03</div>
+              <div class="pillar-content">
+                <h3>REBELLIOUS INDIE FREEDOM</h3>
+                <p>
+                  Steril ve tahmin edilebilir kalıplara meydan okuyoruz. Kendi stüdyo kültürümüzde bağımsız özgürlüğü sinematik anlatıyla harmanlıyoruz.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- UPCOMING PROJECTS SHOWCASE SECTION (COMING SOON) -->
+    <section id="projects" class="projects-section">
+      <div class="section-container">
+        
+        <div class="projects-header">
+          <div class="p-header-left">
+            <span class="section-tag">[ 03 &bull; SARİBAY STUDIO PROJECTS ]</span>
+            <h2 class="section-title">UPCOMING PROJECTS (COMING SOON)</h2>
+          </div>
+          <div class="p-header-right">
+            <div class="coming-soon-banner">
+              <span class="status-pulse"></span>
+              <span>YENİ AÇILAN BAĞIMSIZ STÜDYOMUZDA TÜM PROJELER ÜRETİM AŞAMASINDADIR &bull; <strong>COMING SOON</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Cards Grid with Dedicated Coming Soon Visuals -->
+        <div class="projects-grid">
+
+          <!-- GAME CARD 1 -->
+          <article class="project-card glass-panel reveal-up" data-tilt>
+            <div class="card-image-wrap">
+              <img src="images/coming_soon_1.png" alt="Sarıbay Studio Coming Soon Project 01" class="card-img">
+              <div class="card-badge-status gold-badge">COMING SOON &bull; Q4 2026</div>
+              <div class="card-tech-badge">UNREAL ENGINE 5</div>
+              <div class="card-hover-overlay">
+                <a href="https://wa.me/905510311029?text=Merhaba,%20Sarıbay%20Studio%20Project%2001%20(Split%20Realm)%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn-card-preview">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                  DETAYLAR İÇİN WHATSAPP (SARI BAY STUDIO)
+                </a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-genre">PROJECT 01 &bull; PARALLEL DIMENSION CO-OP</span>
+                <span class="card-platforms">PC / PS5 / XBOX SERIES X</span>
+              </div>
+              <h3 class="card-title">PROJECT 01: UNANNOUNCED CO-OP TITLE</h3>
+              <p class="card-excerpt">
+                İki farklı boyutta sıkışmış iki ajanın, ekranı ve gerçekliği bölerek zamanı senkronize etmeye çalıştığı zihin bükücü sinematik aksiyon macerası. Sarıbay Yazılım desteğiyle üretimdedir.
+              </p>
+              <div class="card-footer">
+                <span class="card-status-text">Durum: Geliştirme Aşammasında (Coming Soon)</span>
+                <a href="https://wa.me/905510311029?text=Merhaba,%20Sarıbay%20Studio%20Project%2001%20hakkında%20erken%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn-text-link">WHATSAPP İLE BİLGİ AL ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- GAME CARD 2 -->
+          <article class="project-card glass-panel reveal-up" data-tilt data-tilt-delay="100">
+            <div class="card-image-wrap">
+              <img src="images/coming_soon_2.png" alt="Sarıbay Studio Coming Soon Project 02" class="card-img">
+              <div class="card-badge-status gold-badge">COMING SOON &bull; Q1 2027</div>
+              <div class="card-tech-badge">DARK FANTASY</div>
+              <div class="card-hover-overlay">
+                <a href="https://wa.me/905510311029?text=Merhaba,%20Sarıbay%20Studio%20Project%2002%20(Dark%20Fantasy)%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn-card-preview">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                  DETAYLAR İÇİN WHATSAPP (SARI BAY STUDIO)
+                </a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-genre">PROJECT 02 &bull; ATMOSPHERIC DARK FANTASY</span>
+                <span class="card-platforms">PC / PS5</span>
+              </div>
+              <h3 class="card-title">PROJECT 02: UNANNOUNCED FANTASY TITLE</h3>
+              <p class="card-excerpt">
+                Karanlık rünlerle kaplı antik bir tapınakta, birinin ışık diğerinin gölge kontrolünü elinde tuttuğu, kesintisiz iletişim gerektiren gizemli hikaye.
+              </p>
+              <div class="card-footer">
+                <span class="card-status-text">Durum: Pre-Production (Coming Soon)</span>
+                <a href="https://wa.me/905510311029?text=Merhaba,%20Sarıbay%20Studio%20Project%2002%20hakkında%20erken%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn-text-link">WHATSAPP İLE BİLGİ AL ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- GAME CARD 3 -->
+          <article class="project-card glass-panel reveal-up" data-tilt data-tilt-delay="200">
+            <div class="card-image-wrap">
+              <img src="images/coming_soon_1.png" alt="Sarıbay Studio Coming Soon Project 03" class="card-img">
+              <div class="card-badge-status gold-badge">COMING SOON &bull; CONFIDENTIAL</div>
+              <div class="card-tech-badge">CYBERPUNK HEIST</div>
+              <div class="card-hover-overlay">
+                <a href="https://wa.me/905510311029?text=Merhaba,%20Sarıbay%20Studio%20Project%2003%20(Cyberpunk)%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn-card-preview">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                  DETAYLAR İÇİN WHATSAPP (SARI BAY STUDIO)
+                </a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-genre">PROJECT 03 &bull; TACTICAL CYBERPUNK CO-OP</span>
+                <span class="card-platforms">NEXT-GEN PLATFORMS</span>
+              </div>
+              <h3 class="card-title">PROJECT 03: UNANNOUNCED HEIST TITLE</h3>
+              <p class="card-excerpt">
+                Geleceğin megakentinde yapay zeka tarafından yönetilen veri kulelerine eşzamanlı siber sızma operasyonu. Yüksek tempolu, taktiksellik gerektiren soygun aksiyonu.
+              </p>
+              <div class="card-footer">
+                <span class="card-status-text">Durum: Concept & Prototype (Coming Soon)</span>
+                <a href="https://wa.me/905510311029?text=Merhaba,%20Sarıbay%20Studio%20Project%2003%20hakkında%20erken%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn-text-link">WHATSAPP İLE BİLGİ AL ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- GAME CARD 4 -->
+          <article class="project-card glass-panel reveal-up" data-tilt data-tilt-delay="300">
+            <div class="card-image-wrap">
+              <img src="images/coming_soon_2.png" alt="Sarıbay Studio Coming Soon Project 04" class="card-img">
+              <div class="card-badge-status gold-badge">COMING SOON &bull; TEASER STAGE</div>
+              <div class="card-tech-badge">COSMIC HORROR</div>
+              <div class="card-hover-overlay">
+                <a href="https://wa.me/905510311029?text=Merhaba,%20Sarıbay%20Studio%20Project%2004%20(Space%20Survival)%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn-card-preview">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                  DETAYLAR İÇİN WHATSAPP (SARI BAY STUDIO)
+                </a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-genre">PROJECT 04 &bull; COSMIC DEEP SPACE SURVIVAL</span>
+                <span class="card-platforms">PC / CONSOLES</span>
+              </div>
+              <h3 class="card-title">PROJECT 04: UNANNOUNCED COSMIC TITLE</h3>
+              <p class="card-excerpt">
+                Karadelik yörüngesinde mahsur kalmış iki uzay madencisinin, kısıtlı oksijen kaynağını ve akıl sağlığını birbirleriyle paylaşarak bilinmezliğin ortasında hayatta kalma mücadelesi.
+              </p>
+              <div class="card-footer">
+                <span class="card-status-text">Durum: Narrative Scripting (Coming Soon)</span>
+                <a href="https://wa.me/905510311029?text=Merhaba,%20Sarıbay%20Studio%20Project%2004%20hakkında%20erken%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn-text-link">WHATSAPP İLE BİLGİ AL ↗</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INDIE STUDIO FEATURE SECTION -->
+    <section class="mocap-feature-section">
+      <div class="section-container">
+        <div class="mocap-banner glass-panel">
+          <div class="mocap-img-col">
+            <img src="images/indie_stage.png" alt="Sarıbay Studio Mersin Indie Game Studio" class="mocap-img">
+            <span class="mocap-tag">SARİBAY STUDIO &bull; INDIE GAME SETUP</span>
+          </div>
+          <div class="mocap-text-col">
+            <span class="section-tag">[ INDIE STUDIO INFRASTRUCTURE ]</span>
+            <h2>BAĞIMSIZ İNDİE STÜDYO RUHU & YAZILIM ALTYAPIMIZ</h2>
+            <p>
+              Sarıbay Studio; bağımsız (indie) stüdyo ruhu, tutku ve özgür yaratıcı vizyonla hareket eden bir oyun stüdyosudur. Sarıbay Yazılım'ın teknik ve donanım desteğinden faydalanarak Unreal Engine 5 altyapısıyla yenilikçi, hikaye odaklı co-op oyunlar geliştirmektedir.
+            </p>
+            <div class="mocap-stats-row">
+              <div class="m-stat">
+                <span class="m-val">INDIE</span>
+                <span class="m-lbl">STUDIO SPIRIT</span>
+              </div>
+              <div class="m-stat">
+                <span class="m-val">UE5.4</span>
+                <span class="m-lbl">LUMEN & NANITE</span>
+              </div>
+              <div class="m-stat">
+                <span class="m-val">100%</span>
+                <span class="m-lbl">CREATIVE FREEDOM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEVLOG & STUDIO NEWS SECTION -->
+    <section id="devlog" class="devlog-section">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <span class="section-tag">[ 04 &bull; BEHIND THE CURTAIN ]</span>
+          <h2 class="section-title">STUDIO DEVLOG & NEWS</h2>
+          <p class="section-subtitle">Sarıbay Studio mutfağından en güncel gelişmeler ve stüdyo günlükleri.</p>
+        </div>
+
+        <div class="devlog-grid">
+          
+          <!-- Devlog Item 1 -->
+          <article class="devlog-card glass-panel reveal-up">
+            <div class="devlog-date">08 AĞUSTOS 2026</div>
+            <h3 class="devlog-title">Bağımsız Stüdyo Süreçlerimiz Operasyona Başladı</h3>
+            <p class="devlog-excerpt">
+              Sarıbay Yazılım teknoloji desteğiyle kurduğumuz Unreal Engine 5 altyapımızda ilk co-op prototip kayıtlarımızı başlattık.
+            </p>
+            <div class="devlog-tags">
+              <span class="tag">INDIE DEV</span>
+              <span class="tag">UNREAL ENGINE 5</span>
+              <span class="tag">SARİBAY YAZILIM</span>
+            </div>
+          </article>
+
+          <!-- Devlog Item 2 -->
+          <article class="devlog-card glass-panel reveal-up">
+            <div class="devlog-date">28 TEMMUZ 2026</div>
+            <h3 class="devlog-title">Co-Op Mekaniklerinde Ekran Bölünmesini Yeniden Tanımlamak</h3>
+            <p class="devlog-excerpt">
+              Kurucumuz Selahattin Sarıbay'ın yönlendirmesiyle: "Geleneksel ekran bölme teknikleri yerine dinamik ve perspektif açısına göre biçim değiştiren yeni bir kamera sistemi geliştirdik."
+            </p>
+            <div class="devlog-tags">
+              <span class="tag">GAME DESIGN</span>
+              <span class="tag">SELAHATTİN SARİBAY</span>
+              <span class="tag">TECH</span>
+            </div>
+          </article>
+
+          <!-- Devlog Item 3 -->
+          <article class="devlog-card glass-panel reveal-up">
+            <div class="devlog-date">12 TEMMUZ 2026</div>
+            <h3 class="devlog-title">Sarıbay Studio Resmi Olarak Kuruldu!</h3>
+            <p class="devlog-excerpt">
+              Sarıbay Yazılım ekosisteminin yeni üyesi olarak bağımsız (indie) oyun dünyasında devrim yapma parolasıyla yola çıktık. Oyun dünyasına hoş geldin mesajımız.
+            </p>
+            <div class="devlog-tags">
+              <span class="tag">ANNOUNCEMENT</span>
+              <span class="tag">INDIE LAUNCH</span>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CAREERS & JOIN US SECTION (WHATSAPP REDIRECT) -->
+    <section id="careers" class="careers-section">
+      <div class="section-container">
+        
+        <div class="careers-banner glass-panel">
+          <div class="careers-content reveal-left">
+            <span class="section-tag">[ 05 &bull; CAREERS ]</span>
+            <h2 class="careers-headline">BUILD THE FUTURE OF CO-OP GAMING WITH US</h2>
+            <p class="careers-desc">
+              Sarıbay Studio; tutkulu, kalıpları yıkan ve teknoloji sınırlarını zorlamak isteyen yetenekleri arıyor. Başvurularınızı doğrudan WhatsApp hattımız üzerinden yapabilirsiniz.
+            </p>
+            <div class="careers-badges">
+              <span class="c-badge">⚡ POWERED BY SARİBAY YAZILIM</span>
+              <span class="c-badge">📍 MERSIN & REMOTE</span>
+              <span class="c-badge">🎮 INDIE UE5 SPECIALISTS</span>
+            </div>
+          </div>
+          
+          <div class="careers-positions reveal-right">
+            <h3>AÇIK POZİSYONLAR (WHATSAPP İLE BAŞVURUN)</h3>
+            <div class="position-list">
+              
+              <div class="position-item">
+                <div class="pos-info">
+                  <h4>Senior UE5 Gameplay Programmer</h4>
+                  <span>Full-Time &bull; Hybrid / Remote</span>
+                </div>
+                <a href="https://wa.me/905510311029?text=Merhaba%20Selahattin%20Bey,%20Senior%20UE5%20Gameplay%20Programmer%20pozisyonu%20için%20başvuruda%20bulunmak%20istiyorum." target="_blank" rel="noopener" class="btn-apply-job">WHATSAPP İLE BAŞVUR ↗</a>
+              </div>
+
+              <div class="position-item">
+                <div class="pos-info">
+                  <h4>Lead Co-Op Narrative & Level Designer</h4>
+                  <span>Full-Time &bull; Mersin / Remote</span>
+                </div>
+                <a href="https://wa.me/905510311029?text=Merhaba%20Selahattin%20Bey,%20Lead%20Co-Op%20Narrative%20Designer%20pozisyonu%20için%20başvuruda%20bulunmak%20istiyorum." target="_blank" rel="noopener" class="btn-apply-job">WHATSAPP İLE BAŞVUR ↗</a>
+              </div>
+
+              <div class="position-item">
+                <div class="pos-info">
+                  <h4>3D Character & Environment Artist (Nanite)</h4>
+                  <span>Full-Time &bull; Remote</span>
+                </div>
+                <a href="https://wa.me/905510311029?text=Merhaba%20Selahattin%20Bey,%203D%20Character%20Artist%20pozisyonu%20için%20başvuruda%20bulunmak%20istiyorum." target="_blank" rel="noopener" class="btn-apply-job">WHATSAPP İLE BAŞVUR ↗</a>
+              </div>
+
+              <div class="position-item">
+                <div class="pos-info">
+                  <h4>Audio Director & Sound Synthesizer</h4>
+                  <span>Contract / Full-Time</span>
+                </div>
+                <a href="https://wa.me/905510311029?text=Merhaba%20Selahattin%20Bey,%20Audio%20Director%20pozisyonu%20için%20başvuruda%20bulunmak%20istiyorum." target="_blank" rel="noopener" class="btn-apply-job">WHATSAPP İLE BAŞVUR ↗</a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- COOKIE CONSENT & PRIVACY BANNER -->
+  <div id="cookie-banner" class="cookie-banner glass-panel">
+    <div class="cookie-content">
+      <div class="cookie-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 0 10 10 4 4 0 0 1-4-4 4 4 0 0 1-4-4 2 2 0 0 1-2-2z"/><circle cx="8.5" cy="8.5" r="1.5" fill="#C9A84C"/><circle cx="10" cy="15" r="1" fill="#C9A84C"/><circle cx="15.5" cy="13.5" r="1" fill="#C9A84C"/></svg>
+      </div>
+      <div class="cookie-text">
+        <h4>ÇEREZ VE GİZLİLİK TERCİHLERİ</h4>
+        <p>
+          Sarıbay Studio ve <a href="https://saribayholding.github.io/Saribay-Yazilim/" target="_blank">Sarıbay Yazılım</a> olarak, deneyiminizi iyileştirmek için çerezler kullanıyoruz.
+        </p>
+      </div>
+    </div>
+    <div class="cookie-actions">
+      <button id="btn-accept-cookies" class="btn-gold-sm">TÜMÜNÜ KABUL ET</button>
+      <button id="btn-necessary-cookies" class="btn-ghost-sm">SADECE GEREKLİLER</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <div class="footer-logo">
+            <span class="f-logo-main">SARİBAY <span class="gold">STUDIO</span></span>
+          </div>
+          <p class="footer-motto">
+            Merging deep narrative with rebellious co-op gameplay. Independent indie game studio based in Mersin.
+          </p>
+          <div class="footer-powered-box glass-panel">
+            <span class="p-label">ALTYAPI & TEKNOLOJİ SPONSORU</span>
+            <a href="https://saribayholding.github.io/Saribay-Yazilim/" target="_blank" class="p-link">
+              ⚡ POWERED BY SARİBAY YAZILIM ↗
+            </a>
+            <p class="p-sub">Mersin merkezli profesyonel web geliştirme ve dijital dönüşüm ortağınız.</p>
+          </div>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>NAVİGASYON</h4>
+          <ul>
+            <li><a href="#hero">Ana Sayfa</a></li>
+            <li><a href="#vision">Stüdyo Vizyonu</a></li>
+            <li><a href="#projects">Geliştirilen Oyunlar (Coming Soon)</a></li>
+            <li><a href="#devlog">Geliştirici Günlükleri</a></li>
+            <li><a href="#careers">Kariyer & İletişim</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact-col">
+          <h4>KURUCU & İLETİŞİM</h4>
+          <p><strong>Kurucu & Oyun Direktörü:</strong> Selahattin Sarıbay</p>
+          <p><strong>Lokasyon:</strong> Mersin / Türkiye</p>
+          <p><strong>WhatsApp Hat:</strong> <a href="https://wa.me/905510311029" target="_blank" class="gold">+90 551 031 1029</a></p>
+          <p><strong>E-posta:</strong> contact@saribaystudio.com</p>
+          <div class="social-links">
+            <a href="https://wa.me/905510311029?text=Merhaba%20Selahattin%20Bey,%20Sarıbay%20Studio%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="social-icon" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+            <a href="https://instagram.com/ssaribayholding" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://github.com/SARIBAYHOLDING" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+            <a href="https://saribayholding.github.io/Saribay-Yazilim/" target="_blank" rel="noopener" class="social-icon" aria-label="Sarıbay Yazılım">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- HUGE EDITORIAL WATERMARK FOOTER -->
+      <div class="footer-huge-watermark">
+        SARİBAY STUDIO
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Sarıbay Studio. Independent Indie Game Studio. Kurucu: Selahattin Sarıbay.</p>
+        <p class="f-powered-text">Powered By <a href="https://saribayholding.github.io/Saribay-Yazilim/" target="_blank">Sarıbay Yazılım</a></p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>

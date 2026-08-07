@@ -1,0 +1,7 @@
+.git
+.gitignore
+*.log
+README.md
+implementation_plan.md
+task.md
+walkthrough.md
