@@ -4,11 +4,6 @@
   "private": true,
   "description": "Dark Cinematic Indie Game Studio Landing Page for Sarıbay Studio (Powered By Sarıbay Yazılım)",
   "main": "index.html",
-  "scripts": {
-    "dev": "serve . -p 8080",
-    "start": "serve .",
-    "build": "echo 'Static build complete'"
-  },
   "keywords": [
     "saribay-studio",
     "indie-game-studio",
@@ -18,6 +13,5 @@
     "selahattin-saribay"
   ],
   "author": "Selahattin Sarıbay (Sarıbay Studio)",
-  "license": "MIT",
-  "dependencies": {}
+  "license": "MIT"
 }

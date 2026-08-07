@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "saribay-studio",
+  "outputDirectory": ".",
   "cleanUrls": true,
   "headers": [
     {
